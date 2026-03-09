@@ -18,9 +18,12 @@ export default function Home() {
           <div style={{ width: 36, height: 36, background: 'linear-gradient(135deg, #7C3AED, #00C896)', borderRadius: 8 }} />
           <span style={{ fontWeight: 700, fontSize: '1.1rem', color: '#F8FAFC', letterSpacing: '-0.02em' }}>Claude AI Skills</span>
         </div>
-        <a href="https://thevoiceofcash.com/consultation" style={{ background: '#7C3AED', color: '#F8FAFC', padding: '0.5rem 1.25rem', borderRadius: 8, textDecoration: 'none', fontWeight: 600, fontSize: '0.9rem' }}>
-          Get Early Access
-        </a>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+          <a href="/blog" style={{ color: '#00C896', textDecoration: 'none', fontWeight: 600, fontSize: '0.9rem' }}>Blog</a>
+          <a href="https://thevoiceofcash.com/consultation" style={{ background: '#7C3AED', color: '#F8FAFC', padding: '0.5rem 1.25rem', borderRadius: 8, textDecoration: 'none', fontWeight: 600, fontSize: '0.9rem' }}>
+            Get Early Access
+          </a>
+        </div>
       </nav>
 
       {/* Hero */}
