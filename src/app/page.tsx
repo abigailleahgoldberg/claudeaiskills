@@ -18,7 +18,7 @@ export default function Home() {
           <div style={{ width: 36, height: 36, background: 'linear-gradient(135deg, #7C3AED, #00C896)', borderRadius: 8 }} />
           <span style={{ fontWeight: 700, fontSize: '1.1rem', color: '#F8FAFC', letterSpacing: '-0.02em' }}>Claude AI Skills</span>
         </div>
-        <a href="#notify" style={{ background: '#7C3AED', color: '#F8FAFC', padding: '0.5rem 1.25rem', borderRadius: 8, textDecoration: 'none', fontWeight: 600, fontSize: '0.9rem' }}>
+        <a href="https://thevoiceofcash.com/consultation" style={{ background: '#7C3AED', color: '#F8FAFC', padding: '0.5rem 1.25rem', borderRadius: 8, textDecoration: 'none', fontWeight: 600, fontSize: '0.9rem' }}>
           Get Early Access
         </a>
       </nav>
@@ -35,7 +35,7 @@ export default function Home() {
         <p style={{ fontSize: '1.2rem', color: 'rgba(248,250,252,0.7)', lineHeight: 1.7, marginBottom: '2.5rem', maxWidth: 560, margin: '0 auto 2.5rem' }}>
           Practical AI training, prompting guides, and skill-building resources for professionals using Anthropic's Claude.
         </p>
-        <a href="#notify" style={{ display: 'inline-block', background: 'linear-gradient(135deg, #7C3AED, #6D28D9)', color: '#F8FAFC', padding: '1rem 2.5rem', borderRadius: 12, textDecoration: 'none', fontWeight: 700, fontSize: '1.1rem', boxShadow: '0 8px 32px rgba(124,58,237,0.4)' }}>
+        <a href="https://thevoiceofcash.com/consultation" style={{ display: 'inline-block', background: 'linear-gradient(135deg, #7C3AED, #6D28D9)', color: '#F8FAFC', padding: '1rem 2.5rem', borderRadius: 12, textDecoration: 'none', fontWeight: 700, fontSize: '1.1rem', boxShadow: '0 8px 32px rgba(124,58,237,0.4)' }}>
           Browse Skills
         </a>
       </section>
