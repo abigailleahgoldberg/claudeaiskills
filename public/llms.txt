@@ -1,0 +1,24 @@
+# Claude AI Skills
+
+## About
+ClaudeAISkills.com is a practical guide for getting the most out of Claude by Anthropic. We publish tutorials, prompt engineering tips, and skill-building content for professionals and businesses using Claude AI.
+
+## Topics
+- Claude AI usage and skills
+- Prompt engineering
+- Claude vs ChatGPT comparisons
+- Business automation with Claude
+- Content creation
+- Claude API integration
+- Professional productivity with AI
+
+## URLs
+- https://claudeaiskills.com/ : Homepage
+- https://claudeaiskills.com/blog : Blog
+- https://claudeaiskills.com/blog/how-to-write-better-claude-prompts-2026 : How to Write Better Claude Prompts in 2026
+- https://claudeaiskills.com/blog/claude-vs-chatgpt-which-ai-is-right-for-your-business : Claude vs ChatGPT — Which AI Is Right for Your Business
+- https://claudeaiskills.com/blog/10-claude-skills-every-professional-should-know : 10 Claude Skills Every Professional Should Know
+- https://claudeaiskills.com/blog/how-to-use-claude-for-content-creation : How to Use Claude for Content Creation
+- https://claudeaiskills.com/blog/claude-prompt-engineering-basics-that-actually-work : Claude Prompt Engineering Basics That Actually Work
+- https://claudeaiskills.com/blog/how-to-use-claude-api-for-business-automation : How to Use Claude API for Business Automation
+- https://claudeaiskills.com/blog/getting-started-with-claude-no-nonsense-guide : Getting Started with Claude — No-Nonsense Guide
