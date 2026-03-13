@@ -340,4 +340,213 @@ Start with one task today. See what it produces. Refine the prompt once. That cy
 
 Ready to put Claude to work for your business? [Book a free consultation](https://thevoiceofcash.com/consultation).`,
   },
+  {
+    slug: 'building-custom-claude-skills-guide',
+    title: 'Building Custom Claude Skills: A Step-by-Step Guide',
+    seoTitle: 'Building Custom Claude Skills: A Step-by-Step Guide',
+    seoDescription: 'Learn what a Claude skill is, how to structure it with SKILL.md and scripts, and how to test and iterate to build reliable AI capabilities.',
+    date: '2026-03-13',
+    category: 'Tutorials',
+    readTime: '8 min read',
+    excerpt: "A Claude skill is a structured package that gives an AI agent a reliable, reusable capability. Here's how to build one from scratch — SKILL.md, scripts, reference files, and all.",
+    content: `A Claude skill is more than a prompt. It is a structured package — a directory of files — that gives an AI agent a reliable, reusable capability with consistent behavior. If you've used Claude and found yourself writing the same context-setting instructions repeatedly, or noticed that complex tasks need reference materials to work well, skills are the architecture that solves both problems.
+
+This guide walks you through building a custom Claude skill from scratch.
+
+## What a Claude Skill Actually Is
+
+A skill is a directory containing at minimum a \`SKILL.md\` file, which describes what the skill does, how to use it, and what resources are available. Most production skills also include a \`scripts/\` directory with executable scripts, and a \`references/\` or \`data/\` directory with reference materials the skill needs.
+
+The mental model: a skill is like hiring a specialist. A generalist Claude can try to do anything, but a Claude equipped with a custom skill has the specialist's tools, reference materials, and documented workflow for a specific task. The skill doesn't make Claude smarter — it makes Claude better-prepared for a specific job.
+
+Skills are read at runtime. When a task matches a skill's description, the agent reads the \`SKILL.md\` file and follows its instructions. The skill file is the bridge between "Claude in general" and "Claude doing this specific thing reliably."
+
+## Anatomy of a Skill
+
+### SKILL.md
+
+The central file. Everything else orbits around it. A well-written \`SKILL.md\` includes:
+
+**Description:** A clear statement of what the skill does and when to use it. This is used for skill matching — the agent reads this to determine if the skill applies to a given task. Write it as a precise trigger condition, not a marketing description.
+
+\`\`\`markdown
+## When to Use This Skill
+Use when: user asks to transcribe audio files, convert speech to text, or process audio content.
+NOT for: real-time transcription, video transcription (extract audio first), or files over 25MB.
+\`\`\`
+
+**Prerequisites and setup:** What the agent needs before running the skill. API keys, dependencies, environment variables, required tools.
+
+\`\`\`markdown
+## Prerequisites
+- OPENAI_API_KEY must be set in environment
+- Python 3.9+ required
+- Install: pip install openai
+\`\`\`
+
+**Step-by-step instructions:** The actual workflow the agent follows. Don't assume the agent will figure out the right order — specify it. The more explicit you are here, the more consistent the skill's behavior.
+
+\`\`\`markdown
+## Process
+1. Check that the audio file exists and is under 25MB
+2. Run scripts/transcribe.py with the file path as argument
+3. Review the output for obvious errors
+4. Save the transcript to the specified output location
+5. Report the word count and any flagged uncertainties
+\`\`\`
+
+**Output format:** What the final output should look like. If you want a specific format, specify it here. Don't leave it to interpretation.
+
+**Error handling:** What to do when things go wrong. Which errors are recoverable, which require human intervention, and what information to include in error reports.
+
+### The scripts/ Directory
+
+Scripts are the executable heart of a skill. They handle the parts of a task that are better done by code than by language model: API calls, file processing, data transformation, external service integration.
+
+A good skill script:
+
+- Does one thing and does it well
+- Accepts arguments from the command line (so the agent can call it with \`exec\`)
+- Handles errors explicitly and prints useful error messages
+- Outputs its result in a format the agent can parse — plain text, JSON, or a file
+
+Keep scripts simple. A script that does too much becomes hard to debug and hard to reuse. If a skill needs to do several distinct things, give it several scripts and have the \`SKILL.md\` orchestrate them.
+
+Example script structure:
+\`\`\`
+skills/
+  my-skill/
+    SKILL.md
+    scripts/
+      process.py       # Core processing logic
+      validate.py      # Input validation
+      format_output.py # Output formatting
+    references/
+      template.md      # Output template
+      examples/        # Example inputs and outputs
+        example_input.txt
+        example_output.txt
+\`\`\`
+
+### Reference Files
+
+Reference files give the skill stable knowledge it needs to do its job correctly. This might be:
+
+- **Templates:** Document templates, output formats, email structures
+- **Configuration:** Settings that change occasionally but shouldn't be hardcoded in scripts
+- **Examples:** Input/output examples that help the agent calibrate what "good output" looks like
+- **Reference data:** Lookup tables, product catalogs, industry terms — anything the agent needs to consult but shouldn't generate from scratch
+
+The distinction between reference files and just putting context in the \`SKILL.md\` is practical: \`SKILL.md\` is for instructions. Reference files are for data. If you find your \`SKILL.md\` getting very long because you're including a lot of data, that data probably belongs in a reference file.
+
+## Building Your First Skill
+
+Let's walk through building a simple skill: a blog post formatter that takes a rough draft and formats it according to a specific template.
+
+**Step 1: Define what the skill does**
+
+Before writing a single file, write one sentence: "This skill [does what] [for what input] [to produce what output]."
+
+"This skill takes a rough blog post draft and formats it according to our standard template, adding appropriate headers, fixing formatting inconsistencies, and checking SEO elements."
+
+That sentence becomes the core of your \`SKILL.md\` description.
+
+**Step 2: Write the SKILL.md**
+
+\`\`\`markdown
+# Blog Post Formatter
+
+## Description
+Format rough blog drafts to match the standard template. Use when given a draft blog post that needs formatting, headers, or SEO review.
+
+## Prerequisites
+No external dependencies required. Template is at references/template.md.
+
+## Process
+1. Read the draft content provided by the user
+2. Read references/template.md to understand the required structure
+3. Reformat the draft to match the template structure:
+   - Add H2 headers for each major section
+   - Format the introduction paragraph (2-3 sentences, no jargon)
+   - Add the standard CTA section at the end
+   - Check that the title is under 60 characters
+4. Review the formatted post for consistency
+5. Output the formatted post in a code block labeled "Formatted Post"
+6. Provide a brief summary of changes made
+
+## Output Format
+- Formatted post in a code block
+- Summary list of changes made
+- Word count of final post
+
+## Common Issues
+- If the draft has no clear sections, ask the user to identify the main topics before formatting
+- If the draft is under 300 words, flag it as too short before formatting
+\`\`\`
+
+**Step 3: Create the reference template**
+
+\`\`\`markdown
+# [Title — under 60 chars]
+
+[Introduction: 2-3 sentences. What is this post about? Who is it for?]
+
+## [Section 1 Header]
+
+[Section content]
+
+## [Section 2 Header]
+
+[Section content]
+
+[Additional sections as needed]
+
+## Summary
+
+[3-5 bullet points summarizing key takeaways]
+
+---
+
+Ready to put this into practice? [Book a free consultation](/consultation).
+\`\`\`
+
+**Step 4: Test it**
+
+Point the agent at the skill and give it a rough draft. Does it follow the instructions? Does the output match the template? Does it handle edge cases (too-short drafts, drafts with no clear sections) the way you specified?
+
+First runs rarely produce exactly what you want. Take notes on where the behavior diverges from your intent and update the \`SKILL.md\` to be more explicit about those cases.
+
+## Testing and Iteration
+
+The testing loop for skills is: run the skill on a test input, compare output to expected output, identify the gap, update the SKILL.md or scripts, repeat.
+
+Keep a \`tests/\` directory in your skill with example inputs and expected outputs. This gives you a baseline to compare against when you make changes — you can verify that an improvement in one area didn't break behavior in another.
+
+The most common iteration pattern:
+
+1. Skill works for the common case but fails on edge cases → add explicit edge case handling to SKILL.md
+2. Skill's output format is inconsistent → add more specific output format instructions with examples
+3. Skill calls a script but the script fails silently → add error handling to the script and error recovery steps to SKILL.md
+4. Skill is too general and produces different results on similar inputs → add examples to the references directory to anchor expected behavior
+
+Skills improve through iteration. The first version will have gaps. That's expected. The discipline is documenting those gaps and closing them systematically.
+
+## When to Build a Skill vs. Just Prompt
+
+Build a skill when:
+- You're going to do the same type of task more than a few times
+- The task requires reference materials that need to stay current
+- The task involves executable scripts or external API calls
+- You want consistent behavior across different sessions and contexts
+- Other people or agents will need to use the same capability
+
+Skip the skill when:
+- It's a one-off task
+- The task is simple enough that a single clear prompt works reliably
+- You're still exploring the right approach
+
+Skills are an investment. They take time to build well. They pay off when you're running the same capability repeatedly and need it to be reliable.
+
+Ready to put Claude to work for your business? [Book a free consultation](https://thevoiceofcash.com/consultation).`,
+  },
 ];
