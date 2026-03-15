@@ -108,6 +108,20 @@ export default function Home() {
         </div>
       </section>
 
+      {/* AI Network */}
+      <div style={{ borderTop: '1px solid rgba(124,58,237,0.1)', padding: '1.5rem 2rem', display: 'flex', flexWrap: 'wrap', gap: '1.5rem', alignItems: 'center', justifyContent: 'center' }}>
+        <span style={{ fontSize: '0.62rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(124,58,237,0.6)' }}>AI Network</span>
+        {[
+          ['AISkillsAgents.com', 'https://aiskillsagents.com'],
+          ['AnthropicAISkills.com', 'https://anthropicaiskills.com'],
+          ['AISkillsGenerator.com', 'https://aiskillsgenerator.com'],
+          ['SearchPerformanceMarketing.com', 'https://searchperformancemarketing.com'],
+          ['TheVoiceOfCash.com', 'https://thevoiceofcash.com'],
+        ].map(([label, href]) => (
+          <a key={href} href={href} style={{ fontSize: '0.78rem', color: 'rgba(248,250,252,0.4)', textDecoration: 'none' }}>{label}</a>
+        ))}
+      </div>
+
       {/* Footer */}
       <footer style={{ borderTop: '1px solid rgba(248,250,252,0.08)', padding: '2rem', textAlign: 'center', color: 'rgba(248,250,252,0.4)', fontSize: '0.875rem' }}>
         <p style={{ margin: 0 }}>2026 Claude AI Skills. Not affiliated with Anthropic. Independent training resource.</p>
