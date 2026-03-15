@@ -22,3 +22,6 @@ ClaudeAISkills.com is a practical guide for getting the most out of Claude by An
 - https://claudeaiskills.com/blog/claude-prompt-engineering-basics-that-actually-work : Claude Prompt Engineering Basics That Actually Work
 - https://claudeaiskills.com/blog/how-to-use-claude-api-for-business-automation : How to Use Claude API for Business Automation
 - https://claudeaiskills.com/blog/getting-started-with-claude-no-nonsense-guide : Getting Started with Claude — No-Nonsense Guide
+- https://claudeaiskills.com/blog/how-to-build-a-custom-claude-skill-that-actually-works : How to Build a Custom Claude Skill That Actually Works
+- https://claudeaiskills.com/blog/claude-code-vs-cursor-vs-copilot-which-ai-coding-tool-wins-2026 : Claude Code vs Cursor vs Copilot: Which AI Coding Tool Wins in 2026
+- https://claudeaiskills.com/blog/10-claude-prompts-that-will-change-how-you-work : 10 Claude Prompts That Will Change How You Work

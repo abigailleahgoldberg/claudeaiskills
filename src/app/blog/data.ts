@@ -549,4 +549,217 @@ Skills are an investment. They take time to build well. They pay off when you're
 
 Ready to put Claude to work for your business? [Book a free consultation](https://thevoiceofcash.com/consultation).`,
   },
+  {
+    slug: 'how-to-build-a-custom-claude-skill-that-actually-works',
+    title: 'How to Build a Custom Claude Skill That Actually Works',
+    seoTitle: 'How to Build a Custom Claude Skill That Actually Works | Claude AI Skills',
+    seoDescription: 'A practical tutorial for building a custom Claude skill that performs reliably in production. System prompts, testing, deployment, and iteration.',
+    date: '2025-11-10',
+    category: 'How-To',
+    readTime: '8 min read',
+    excerpt: 'Most Claude skill builds fail for the same reasons: vague system prompts, insufficient testing, and no measurement of production performance. Here is the approach that produces skills that actually work.',
+    content: `A Claude skill that works is not just a prompt that produces a decent output in a demo. It is a system that performs reliably across hundreds or thousands of real-world inputs, handles edge cases gracefully, and improves over time based on production feedback. Most skill builds do not reach that bar. Here is why, and what to do differently.
+
+## Define the Skill Before You Prompt
+
+The most common starting point for a Claude skill build is wrong. Developers and business owners start by writing a prompt. They should start by writing a specification.
+
+Before writing a single line of a system prompt, answer these questions in writing:
+
+What is the exact input this skill will receive? Not a vague description. The actual format, length, and content type of the real inputs it will process.
+
+What is the exact output this skill should produce? If it is structured data, define the schema. If it is prose, describe the style, length, and constraints. If it is a decision, define what decision categories exist and what determines each one.
+
+What are the failure modes you need to prevent? What outputs would be unacceptable? What situations should escalate to a human instead of being handled autonomously?
+
+Write the specification before the prompt. You will revise the specification when you discover things you missed. That is expected. Having it in writing forces clarity that saves hours of debugging later.
+
+## Write the System Prompt With Constraints, Not Just Instructions
+
+A weak system prompt tells Claude what to do. A strong system prompt tells Claude what to do, how to do it, what format to produce, what to do when inputs are ambiguous, and what not to do.
+
+The constraint layer is what most skill builders underinvest in. Claude is a capable model. It will fill in gaps with reasonable defaults. The problem is that its defaults may not match your requirements, and gaps in the system prompt produce variation you did not anticipate.
+
+Structure your system prompt in clear sections: role and context, specific capabilities and tasks, output format requirements, constraint and boundary conditions, and escalation criteria. Each section should be explicit enough that someone unfamiliar with your business could read the system prompt and understand exactly what the skill is supposed to do.
+
+A practical test: read your system prompt out loud as if you were giving instructions to a new employee. Does every instruction make sense without additional context? Are there situations the instructions do not cover? Fill every gap you find.
+
+## Test With a Diverse Input Set
+
+Single-example testing is almost useless for skill development. You need a diverse set of inputs that covers the range of what the skill will actually encounter.
+
+Collect 50 to 100 real historical inputs from the process you are automating. If you do not have historical data, generate a representative set of test cases that includes: typical inputs (the easy cases), edge cases (unusual formats, incomplete information, unusual phrasing), adversarial inputs (attempts to manipulate the skill into doing something outside its scope), and high-stakes inputs (cases where getting it wrong would have significant consequences).
+
+Run every test case. Review every output. Document every case where the output is incorrect, inconsistent with the specification, or ambiguous. Use that documentation to refine the system prompt.
+
+Repeat until your failure rate on the test set is below your defined acceptable threshold. Define that threshold before you start testing, not after. Moving the goalposts during testing is how systems with unacceptable failure rates end up in production.
+
+## Build Graceful Escalation Into the Skill
+
+Every Claude skill will encounter inputs it should not handle autonomously. Build explicit escalation into the design.
+
+Define the conditions that should trigger escalation. Common examples: inputs containing expressions of frustration or distress, inputs requesting actions outside the skill's defined scope, inputs where the required output would be high-stakes and irreversible, inputs that do not match the expected format or content type.
+
+Implement escalation as a specific output type, not as a failure mode. If the skill should escalate a customer complaint to a human agent, the output should be structured to facilitate that handoff with all relevant context. Design the escalation path as deliberately as you design the primary path.
+
+## Deploy With Monitoring From Day One
+
+A Claude skill that is not monitored in production is a liability. You cannot improve what you cannot observe, and production inputs consistently reveal failure modes that test sets did not anticipate.
+
+Log every input and every output. Log the timestamp, the model used, the token count, and any errors. If possible, log the downstream outcome as well: did the customer respond positively, did the appointment get scheduled, did the lead convert.
+
+Set up alerts for: error rates above a defined threshold, outputs that contain specific phrases that indicate failure modes, and latency above a defined threshold.
+
+Review logs on a defined schedule. Weekly for the first month. Monthly after that. Use what you find to improve the system prompt. Treat the skill as a living system, not a finished product.
+
+## Iterate Based on Production Performance
+
+The skill you deploy on day one will not be as good as the skill you are running at day ninety. Production data reveals things that testing cannot. Real users phrase things in ways you did not anticipate. Edge cases you did not include in your test set appear regularly.
+
+Establish a process for capturing production feedback, reviewing it, and incorporating it into skill improvements. This does not need to be elaborate. A weekly review of flagged outputs and a monthly update to the system prompt is often sufficient.
+
+The skills that compound in value over time are the ones with an active improvement process. The ones that stay static gradually accumulate unhandled edge cases until something breaks badly enough that someone finally looks at the logs.
+
+Ready to put Claude to work for your business? [Book a free consultation](https://thevoiceofcash.com/consultation).`,
+  },
+  {
+    slug: 'claude-code-vs-cursor-vs-copilot-which-ai-coding-tool-wins-2026',
+    title: 'Claude Code vs Cursor vs Copilot: Which AI Coding Tool Wins in 2026',
+    seoTitle: 'Claude Code vs Cursor vs Copilot: Which AI Coding Tool Wins in 2026 | Claude AI Skills',
+    seoDescription: 'An honest comparison of Claude Code, Cursor, and GitHub Copilot for software development in 2026. Strengths, weaknesses, and which to choose.',
+    date: '2026-01-27',
+    category: 'Comparison',
+    readTime: '7 min read',
+    excerpt: 'Claude Code, Cursor, and GitHub Copilot are the three tools that come up most in every developer AI discussion in 2026. Here is what each actually does better.',
+    content: `Every developer has an opinion about AI coding tools. Most opinions are based on limited experience with one or two tools in a specific workflow context. This comparison draws on broader usage patterns to give you a more complete picture of where each tool actually wins.
+
+## What Each Tool Is Designed to Do
+
+These three tools are not direct substitutes for each other. They are designed for different points in the development workflow.
+
+**GitHub Copilot** is primarily an inline code completion tool. It lives in your editor, watches what you type, and suggests the next line, the next function, or a completion of the pattern you have started. It works best for: routine code that follows familiar patterns, boilerplate generation, completing partially-written functions, and suggesting standard library usage.
+
+**Cursor** is an AI-native code editor built on top of VS Code. It combines inline completion with conversational AI assistance within the editor. It can edit files based on natural language instructions, has context awareness across your codebase, and is designed for full-feature development workflows rather than just completion.
+
+**Claude Code** is Anthropic's terminal-based agentic coding tool. It operates with full access to your file system and terminal, can read and modify files, run commands, and complete multi-step coding tasks described in natural language. It is optimized for larger, more complex tasks: refactoring, debugging across multiple files, implementing complete features from specification.
+
+## Where Each Tool Leads
+
+**Copilot wins for:** Inline completion speed. If you want suggestions as you type without interrupting your flow, Copilot's integration is the smoothest. It is fast, low-friction, and consistently useful for the kinds of code that follow recognizable patterns. Enterprise teams with existing GitHub infrastructure have minimal setup overhead.
+
+**Cursor wins for:** Mid-complexity development work in an IDE environment. The combination of codebase-aware context, conversational editing, and VS Code compatibility makes it the most versatile single tool for day-to-day feature development. The ability to say "update this function to also handle the case where X" and have Cursor make the change while understanding the surrounding code is genuinely useful.
+
+**Claude Code wins for:** Complex, multi-step, multi-file tasks. When you need to refactor a module across fifteen files, debug a subtle issue that requires reading through extensive logs and code simultaneously, or implement a complete feature that spans multiple layers of a codebase, Claude Code's agentic capabilities produce better results than the conversational approaches in Cursor or Copilot Chat.
+
+Claude Code also wins on transparency. You can see exactly what it is doing at each step, which matters for code review and for understanding what changed and why.
+
+## Where Each Tool Loses
+
+**Copilot's weakness** is that it is still primarily a completion tool. Complex reasoning about architecture, debugging subtle bugs that require understanding system behavior, and implementing features that require coordination across many files are not where it shines. Copilot Chat has added conversational capabilities, but they lag behind Cursor and Claude Code in capability.
+
+**Cursor's weakness** is cost and occasionally unpredictable behavior on very complex multi-file tasks. It also has a steeper learning curve than Copilot if you are used to a simpler editor setup. And while it handles most development tasks well, very long context tasks can push against its limits.
+
+**Claude Code's weakness** is that it is a terminal tool, not an IDE integration. Developers who want an immersive editor experience with AI assistance built in will find the context-switching between terminal and editor less fluid than Cursor's integrated experience. Claude Code also tends to be slower on simple tasks than Copilot inline completion.
+
+## The Stack Most Serious Developers Use in 2026
+
+The developers getting the most out of AI tooling in 2026 are not using one tool exclusively. The most common stack:
+
+Copilot or Cursor for day-to-day development work in the IDE. The inline completion and conversational editing handle 70 to 80 percent of development interactions.
+
+Claude Code for the complex tasks. Multi-file refactors, debugging difficult issues, implementing complete features from detailed specifications. The terminal-first approach and agentic capabilities make it the right tool for these cases even if it is slower for routine work.
+
+This is similar to how a carpenter does not use the same tool for every job. Different tools optimized for different tasks produce better overall results than forcing one tool to handle everything.
+
+## Making the Decision for Your Team
+
+If your team is primarily doing feature development in an IDE and does not need heavy agentic capabilities: Cursor is the strongest single-tool choice right now.
+
+If inline completion in your existing editor workflow is the priority and you are on GitHub: Copilot is the lowest-friction starting point.
+
+If you do a lot of large-scale refactoring, complex debugging, or greenfield feature implementation from specifications: Claude Code is worth adding to the stack.
+
+If budget is a constraint: Copilot is the most affordable entry point. Evaluate from there.
+
+Ready to put Claude to work for your business? [Book a free consultation](https://thevoiceofcash.com/consultation).`,
+  },
+  {
+    slug: '10-claude-prompts-that-will-change-how-you-work',
+    title: '10 Claude Prompts That Will Change How You Work',
+    seoTitle: '10 Claude Prompts That Will Change How You Work | Claude AI Skills',
+    seoDescription: '10 practical, copy-paste Claude prompts for business writing, analysis, research, coding, and productivity. Each one is immediately usable.',
+    date: '2026-03-10',
+    category: 'Prompting',
+    readTime: '6 min read',
+    excerpt: 'Ten Claude prompts you can copy, paste, and use today. Each one is built for a specific, high-value use case and tested against real work.',
+    content: `The difference between a useful AI tool and a frustrating one is usually the quality of the prompts. Here are ten prompts built for specific, high-value use cases. Each one is designed to be copy-paste ready with minimal modification.
+
+## 1. The Meeting Summary Prompt
+
+Use after any meeting to extract decisions, action items, and key discussion points from notes or transcripts.
+
+"You are a professional note-taker and project coordinator. Review the following meeting notes and produce: (1) a list of decisions made, (2) a list of action items with owner names where mentioned, (3) a two-sentence summary of the main discussion. Use clear formatting. If owner names are not clear for action items, note them as 'unassigned'. Here are the notes: [paste notes]"
+
+## 2. The Email Rewriter Prompt
+
+Use when you have drafted an email but it is not quite right in tone, length, or clarity.
+
+"Rewrite the following email to be [direct and concise / warmer and more relationship-focused / more professional / more urgent without being aggressive]. Keep the core message and facts intact. Target length: [short - 3 sentences / medium - 2-3 paragraphs / keep current length]. Email: [paste email]"
+
+## 3. The Strategic Brief Prompt
+
+Use to quickly structure your thinking on any strategic decision.
+
+"Help me think through the following decision using a structured framework. Present: (1) the core tradeoffs, (2) the key unknowns that would change the decision if resolved, (3) the most important consideration I may be underweighting, and (4) your recommendation with brief rationale. Decision I am facing: [describe decision]"
+
+## 4. The Content Outline Prompt
+
+Use to generate a detailed blog post or article outline before writing.
+
+"Create a detailed outline for a [800-1200 word] blog post titled '[your title]' targeting [audience description]. The outline should include: an introduction hook, 4-6 main sections with 2-3 supporting points each, and a conclusion. For each section, write one sentence describing what it will cover and why it matters to the reader. The tone should be [professional / conversational / direct / educational]."
+
+## 5. The Feedback Synthesizer Prompt
+
+Use to make sense of qualitative feedback from customers, surveys, or team retrospectives.
+
+"You are an analyst helping identify patterns in qualitative feedback. Review the following feedback items and produce: (1) the top 3 themes by frequency, (2) the most critical issue mentioned regardless of frequency, (3) any contradictions or tensions between different feedback items, and (4) one recommendation based on the patterns you see. Feedback: [paste feedback]"
+
+## 6. The Code Reviewer Prompt
+
+Use to get a practical code review that focuses on real issues, not style preferences.
+
+"Review the following code for: (1) correctness issues or bugs, (2) security concerns, (3) performance problems for expected production load, (4) readability and maintainability concerns. For each issue, explain what the problem is and suggest a specific fix. Skip style issues that are not meaningful. Code: [paste code]"
+
+## 7. The Competitor Analysis Prompt
+
+Use to structure a competitive analysis when you have gathered raw information about competitors.
+
+"Using the following information about competitor products, create a structured competitive analysis. Include: a feature comparison table, an honest assessment of where each competitor is strongest, the gaps that represent opportunities, and the areas where direct competition is most intense. Raw information: [paste information]"
+
+## 8. The Difficult Conversation Prep Prompt
+
+Use to prepare for a challenging conversation with an employee, client, or stakeholder.
+
+"Help me prepare for a difficult conversation. I need to [describe situation: e.g., give corrective feedback, decline a request, deliver bad news, address a conflict]. The other person tends to [describe their communication style or likely reaction if known]. Help me: (1) identify the core message I need to communicate clearly, (2) anticipate likely responses and how to handle each, (3) suggest an opening that sets a constructive tone, and (4) identify what a successful outcome looks like."
+
+## 9. The Proposal Strengthener Prompt
+
+Use after writing a business proposal to identify and address weaknesses before sending.
+
+"You are a skeptical client reviewing the following proposal. Identify: (1) the three strongest objections a client would raise, (2) claims that are not sufficiently supported with evidence or specifics, (3) any gaps in the solution description that would create uncertainty, and (4) the single most important thing to add or strengthen before sending. Proposal: [paste proposal]"
+
+## 10. The Learning Accelerator Prompt
+
+Use when you need to quickly understand an unfamiliar topic well enough to have an informed conversation or make a decision.
+
+"I need to understand [topic] well enough to [specific purpose: e.g., have an informed conversation with a specialist / make a procurement decision / brief my team]. Give me: (1) the core concept in two to three sentences, (2) the five most important things someone in my position needs to know, (3) the most common misconceptions about this topic, and (4) the two or three questions I should ask a specialist to quickly assess their expertise. My background: [brief description of relevant background]."
+
+## Using These Prompts Effectively
+
+Each of these prompts is a starting point. Adjust the parameters in brackets to fit your specific situation. The more specific context you provide, the better the output. After running any of these once, note what worked and what did not and add one or two sentences to the prompt that address the gaps.
+
+The prompts that become genuinely valuable are the ones you refine over time for your specific workflow. Start with these frameworks, then make them yours.
+
+Ready to put Claude to work for your business? [Book a free consultation](https://thevoiceofcash.com/consultation).`,
+  },
 ];
